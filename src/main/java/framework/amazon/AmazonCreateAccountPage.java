@@ -1,6 +1,5 @@
 package framework.amazon;
 
-import framework.amazon.AmazonBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +34,6 @@ public class AmazonCreateAccountPage extends AmazonBasePage {
         PageFactory.initElements(driver, this);
     }
 
-
     public void enterDetailsForUser()
     {
         yourNameElement.sendKeys("TestUser");
@@ -49,21 +47,13 @@ public class AmazonCreateAccountPage extends AmazonBasePage {
         randomNumber = 100 + (int)(Math.random() * ((1000000 - 100) + 1));
         emailIDElement.sendKeys("");
         emailIDElement.sendKeys("automationtest"+randomNumber+"@yopmail.com");
-
     }
 
-    public void createAccountandGoToAddressPage(){
+    public void createAccountandGoToAddressPage()
+    {
         continueElement.click();
     }
 
-    /*public String loginAsNewCustomerAndEnterEmailAddress(){
-        int randomNumber;
-        randomNumber = 100 + (int)(Math.random() * ((1000000 - 100) + 1));
-        emailIDElement.sendKeys("automationtest"+randomNumber+"@yopmail.com");
-        String generated_emailID = emailIDElement.getAttribute("value");
-        return generated_emailID;
-
-    }*/
 
 
 }

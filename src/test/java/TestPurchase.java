@@ -1,14 +1,11 @@
 /**
- * Created by nika.khaladkar on 15/09/2016.
+ * Created by nika.khaladkar on 14/09/2016.
  */
 
 import framework.amazon.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -27,6 +24,7 @@ public class TestPurchase {
 
     @AfterMethod
     public static void after(){
+        System.out.print("--Test Finished--");
         driver.close();
         driver.quit();
         driver = null;
@@ -42,21 +40,24 @@ public class TestPurchase {
         amazonElectronicsPage.navigateToIPhone6Page();
         AmazonSmartPhonesPage amazonSmartPhonesPage = new AmazonSmartPhonesPage(driver);
         amazonSmartPhonesPage.navigateToPhoneDetailsPage();
+        //Test might fail here if phone's available quantity is reduced
         AmazonProductPage amazonProductPage = new AmazonProductPage(driver);
         amazonProductPage.changeTheQuantity("3");
         amazonProductPage.clickOnAddToBasket();
         AmazonBasketPage amazonBasketPage = new AmazonBasketPage(driver);
-
         amazonBasketPage.clickOnProceedToCheckout();
         AmazonSignInPage amazonSignInPage = new AmazonSignInPage(driver);
         amazonSignInPage.goToCreateAccountPage();
         AmazonCreateAccountPage amazonCreateAccountPage = new AmazonCreateAccountPage(driver);
         amazonCreateAccountPage.enterDetailsForUser();
         amazonCreateAccountPage.enterUniqueEmailIDForUser();
+        //Enter create your Amazon Account
         amazonCreateAccountPage.createAccountandGoToAddressPage();
         AmazonAddressPage amazonAddressPage = new AmazonAddressPage(driver);
+        //Enter Delivery Address details
         amazonAddressPage.enterAddressDetails();
+        amazonAddressPage.clickOnContinue();
         AmazonDispatchPage amazonDispatchPage = new AmazonDispatchPage(driver);
-        //amazonDispatchPage.clickOnContinue();
+        Assert.assertTrue(amazonDispatchPage.verifyDispatchPageIsDisplayed(),"Dispatch page is displayed");
     }
 }

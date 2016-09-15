@@ -1,6 +1,5 @@
 package framework.amazon;
 
-import framework.amazon.AmazonBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +32,9 @@ public class AmazonAddressPage extends AmazonBasePage {
     @FindBy(how = How.ID, using = "enterAddressPhoneNumber")
     private WebElement enterAddressPhoneNumberElement;
 
+    @FindBy(how = How.CSS, using = "input[type='submit']")
+    private WebElement continueButtonElement;
+
 
     public AmazonAddressPage(WebDriver driver) {
 
@@ -51,6 +53,9 @@ public class AmazonAddressPage extends AmazonBasePage {
 
     }
 
+    public void clickOnContinue(){
+        continueButtonElement.click();
+    }
 
 
 
