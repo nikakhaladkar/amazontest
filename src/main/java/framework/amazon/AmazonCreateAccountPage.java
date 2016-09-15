@@ -41,7 +41,6 @@ public class AmazonCreateAccountPage extends AmazonBasePage {
         yourNameElement.sendKeys("TestUser");
         passwordElement.sendKeys("test1234");
         passwordCheckElement.sendKeys("test1234");
-        //continueElement.click();
     }
 
     public void enterUniqueEmailIDForUser()
